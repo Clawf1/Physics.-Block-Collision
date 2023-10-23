@@ -1,9 +1,9 @@
 from vpython import *
 
-mass_1 = 1  # kg
-mass_2 = 10000  # kg
-velocity_1 = 0  # m/s
-velocity_2 = -50  # m/s
+mass_1 = 1
+mass_2 = 10000
+velocity_1 = 0
+velocity_2 = -50
 side = 2
 dt = 0.01
 
@@ -18,24 +18,24 @@ def velocity_after_wall_collision(v_10):
     return -v_10
 
 
-# Scene
+
 scene = canvas(
     title='Collisions', x=0, y=0, width=1000, height=300, center=vector(0, 0, 0), background=color.black, fov=0.05)
 floor = box(pos=vector(0, -10.5, 0), length=50, height=1, width=5, color=color.white)
 wall = box(pos=vector(-25.5, -6, 0), length=1, height=10, width=5, color=color.white)
 
-# Blocks
+
 block_1 = box(pos=vector(0, -8, 0), length=2 * side, height=2 * side, width=2 * side, color=color.red)
 block_1.velocity = vector(velocity_1, 0, 0)
 block_2 = box(pos=vector(23, -8, 0), length=2 * side, height=2 * side, width=2 * side, color=color.green)
 block_2.velocity = vector(velocity_2, 0, 0)
 
-# Labels
+
 collision_label = label(pos=vector(0, 8, 0), color=color.white, linecolor=color.black)
 velocity_1_label = label(pos=vector(0, 5, 0), color=color.red, linecolor=color.black)
 velocity_2_label = label(pos=vector(0, 2, 0), color=color.green, linecolor=color.black)
 
-# Simulation loop
+
 collision_count = 0
 time = 0
 count = 0
