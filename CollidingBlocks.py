@@ -40,39 +40,39 @@ collision_count = 0
 time = 0
 count = 0
 
-if __name__ == '__main__':
-    while True:
-        rate(100)
 
-        if block_2.pos.x - side < block_1.pos.x + side:
-            velocity_1, velocity_2 = velocity_after_block_collision(
-                mass_1, mass_2, velocity_1, velocity_2
-            )
-            block_1.velocity.x = velocity_1
-            block_2.velocity.x = velocity_2
-            collision_count += 1
+while True:
+    rate(100)
 
-        if block_1.pos.x - side <= wall.pos.x + 0.5:
-            velocity_1 = velocity_after_wall_collision(velocity_1)
-            block_1.velocity.x = velocity_1
-            collision_count += 1
+    if block_2.pos.x - side < block_1.pos.x + side:
+        velocity_1, velocity_2 = velocity_after_block_collision(
+            mass_1, mass_2, velocity_1, velocity_2
+        )
+        block_1.velocity.x = velocity_1
+        block_2.velocity.x = velocity_2
+        collision_count += 1
 
-        block_1.pos += block_1.velocity * dt
-        block_2.pos += block_2.velocity * dt
+    if block_1.pos.x - side <= wall.pos.x + 0.5:
+        velocity_1 = velocity_after_wall_collision(velocity_1)
+        block_1.velocity.x = velocity_1
+        collision_count += 1
 
-        if block_2.pos.x > 25:
-            block_2.visible = False
+    block_1.pos += block_1.velocity * dt
+    block_2.pos += block_2.velocity * dt
 
-        if block_1.pos.x > 25:
-            block_1.visible = False
+    if block_2.pos.x > 25:
+        block_2.visible = False
 
-        if velocity_2 > velocity_1 >= 0:
-            count += 1
-            if count == 100:
-                break
+    if block_1.pos.x > 25:
+        block_1.visible = False
 
-        time += dt
+    if velocity_2 > velocity_1 >= 0:
+        count += 1
+        if count == 100:
+            break
 
-        collision_label.text = f'Collisions: {collision_count}'
-        velocity_1_label.text = f'Velocity 1: {block_1.velocity.x:.2f} m/s'
-        velocity_2_label.text = f'Velocity 2: {block_2.velocity.x:.2f} m/s'
+    time += dt
+
+    collision_label.text = f'Collisions: {collision_count}'
+    velocity_1_label.text = f'Velocity 1: {block_1.velocity.x:.2f} m/s'
+    velocity_2_label.text = f'Velocity 2: {block_2.velocity.x:.2f} m/s'
