@@ -5,7 +5,7 @@ mass_2 = 10000
 velocity_1 = 0
 velocity_2 = -50
 side = 2
-dt = 0.01
+dt = 0.00001
 
 
 def velocity_after_block_collision(m_1, m_2, v_10, v_20):
@@ -38,11 +38,11 @@ velocity_2_label = label(pos=vector(0, 2, 0), color=color.green, linecolor=color
 
 collision_count = 0
 time = 0
-count = 0
+rate_count = 0
 
 
 while True:
-    rate(100)
+    rate(20000)
 
     if block_2.pos.x - side < block_1.pos.x + side:
         velocity_1, velocity_2 = velocity_after_block_collision(
@@ -67,8 +67,8 @@ while True:
         block_1.visible = False
 
     if velocity_2 > velocity_1 >= 0:
-        count += 1
-        if count == 100:
+        rate_count += 1
+        if rate_count == 20000:
             break
 
     time += dt
